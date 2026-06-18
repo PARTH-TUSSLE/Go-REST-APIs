@@ -3,6 +3,7 @@ package main
 import (
 	"REST-api/internal/config"
 	"REST-api/internal/database"
+	"REST-api/internal/handlers"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -41,6 +42,8 @@ func main() {
 			"database": "connected !",
 		})
 	} )
+
+	router.POST("/todos", handlers.CreateTodoHandler(pool))
 
 	router.Run(":"+ cfg.Port)
 }
